@@ -4,8 +4,8 @@ from utils.graficos import gerar_grafico
 
 def main():
     while True:
-        print("\n Menu Principal")
-        print("1. Gerenciar hotéis")
+        print("\n=== SISTEMA DE HOTEIS JRF, BEM-VINDO ===")
+        print("\n1. Gerenciar hotéis")
         print("2. Gerenciar reservas")
         print("3. Ver gráfico de reservas")
         print("0. Sair")
@@ -18,6 +18,7 @@ def main():
         elif opcao == "3":
             gerar_grafico()
         elif opcao == "0":
+            print("\nVolte sempre! :D ")
             break
         else:
             print("Opção inválida.")

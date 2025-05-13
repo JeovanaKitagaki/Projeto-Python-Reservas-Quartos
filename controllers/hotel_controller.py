@@ -58,10 +58,14 @@ def editar_hotel():
             novo_nome = input("Novo nome: ")
             novo_quartos = int(input("Nova quantidade de quartos: "))
 
-            if novo_quartos < h["quartos_reservados"]:
-                print(" As reservas serão canceladas, pois excedem o novo total.")
-                h["quartos_reservados"] = 0
+            if novo_quartos != h["quartos_totais"]:
+                print(f"Esse hotel tem {h['quartos_reservados']} quartos reservados!")
+                confirma = input("Alterar a quantidade de quartos apagará as reservas. Continuar? (S/N): ").strip().upper()
+                if confirma != "S":
+                    print("Edição cancelada.")
+                    return
                 cancelar_reservas_do_hotel(id_editar)
+                h["quartos_reservados"] = 0
 
             h["nome"] = novo_nome
             h["quartos_totais"] = novo_quartos
@@ -76,14 +80,19 @@ def excluir_hotel():
     id_excluir = int(input("ID do hotel para excluir: "))
     for h in hoteis:
         if h["id"] == id_excluir:
-            print("Todas as reservas serão canceladas!")
-            hoteis.remove(h)
+            if h["quartos_reservados"] > 0:
+                print(f"Esse hotel tem {h['quartos_reservados']} quartos reservados!")
+                confirma = input("Excluir o hotel perderá as reservas. Continuar? (S/N): ").strip().upper()
+                if confirma != "S":
+                    print("Exclusão cancelada.")
+                    return
             cancelar_reservas_do_hotel(id_excluir)
+            hoteis.remove(h)
             salvar_hoteis(hoteis)
             print("Hotel excluído.")
             return
     print("Hotel não encontrado.")
-
+    
 def listar_hoteis():
     hoteis = carregar_hoteis()
     for h in hoteis:
