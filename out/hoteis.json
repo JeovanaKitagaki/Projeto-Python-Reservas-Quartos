@@ -1,14 +1,1 @@
-[
-    {
-        "id": 1,
-        "nome": "jeo",
-        "quartos_totais": 15,
-        "quartos_reservados": 8
-    },
-    {
-        "id": 2,
-        "nome": "teste",
-        "quartos_totais": 15,
-        "quartos_reservados": 0
-    }
-]
+[]
